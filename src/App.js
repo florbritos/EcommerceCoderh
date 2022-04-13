@@ -1,9 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
+
 
 function App() {
   return (
     <div className="App">
+      <NavBar/>
+      <h1 className="text-3xl font-bold text-rose-200">Elle&Chick</h1>
+      <p>Centro de estética</p>
+    {/*
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,6 +24,7 @@ function App() {
           Learn React
         </a>
       </header>
+  */}
     </div>
   );
 }

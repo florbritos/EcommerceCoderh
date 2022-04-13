@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap');
+
+.menu{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size:0.80em;
+}
+.menu li:hover{
+    color: rgb(253 164 175);
+}
+.submenu li:hover{
+    color:black;
+}
+.menu li a{
+    background-color:transparent;
+}
+.submenu{
+    border-radius: 0% !important;
+}
+.btn{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
