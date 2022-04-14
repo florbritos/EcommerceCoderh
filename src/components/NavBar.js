@@ -1,8 +1,10 @@
+import CartWidget from "./CartWidget"
+
 const NavBar = () => {
   return (
     <div className="navbar">
         <div className="flex-1">
-            <a className="btn btn-ghost rounded-none normal-case text-xl bg-rose-200 text-white hover:bg-white hover:text-black">Elle&Chic</a>
+            <a className="btn btn-ghost rounded-none normal-case text-xl bg-rose-200 text-white hover:bg-white hover:text-black">Elle&Chic</a>       
         </div>
         <div className="flex-none">
             <ul className="menu menu-horizontal p-0">
@@ -19,8 +21,9 @@ const NavBar = () => {
                 </li>
                 <li><a>CONTACTO</a></li>
             </ul>
-        </div>
-    </div>
+            <CartWidget/>   
+        </div>     
+    </div>  
   )
 }
 export default NavBar
