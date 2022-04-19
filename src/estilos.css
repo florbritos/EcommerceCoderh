@@ -19,3 +19,11 @@
 .btn{
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
+.numcount{
+    line-height:3em;
+}
+
+.btn-group button:hover{
+    background-color:rgb(254 205 211) !important;
+    border-color: rgb(254 205 211);
+}
