@@ -1,4 +1,6 @@
+import Item from "./Item"
 import ItemCount from "./ItemCount"
+import ItemList from "./ItemList"
 
 const ItemListContainer = (props) => {
   return (
@@ -8,6 +10,7 @@ const ItemListContainer = (props) => {
           <a className="btn btn-ghost rounded-none normal-case text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit m-auto mt-5 text-xs">DESCUBRÍ NUESTROS SERVICIOS</a>
       </div>
       <ItemCount stock="10" inicial="1"/>
+      <ItemList items={Item()}/>
     </>
   )
 }
