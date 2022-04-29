@@ -1,5 +1,5 @@
-import Item from "./Item"
 import ItemCount from "./ItemCount"
+import ItemDetailContainer from "./ItemDetailContainer"
 import ItemList from "./ItemList"
 
 const ItemListContainer = (props) => {
@@ -11,6 +11,7 @@ const ItemListContainer = (props) => {
       </div>
       <ItemCount stock="10" inicial="1"/>
       <ItemList/>
+      <ItemDetailContainer/>
     </>
   )
 }

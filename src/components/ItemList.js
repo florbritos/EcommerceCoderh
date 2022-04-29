@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { arrayServicios } from "./arrayServicios";
+import { arrayServicios } from "../data/arrayServicios";
 import Item from "./Item";
 
 
