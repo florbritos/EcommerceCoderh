@@ -5,6 +5,7 @@ const ItemDetail = ({servicio}) => {
         <div className="card-body">
             <h2 className="card-title">{servicio.title}</h2>
             <p className="text-xs">{servicio.description}</p>
+            <p className="text-xs">El precio es: {servicio.price}</p>
             <div className="card-actions justify-end">
             <button className="btn btn-primary">Agregar al carrito</button>
             </div>
