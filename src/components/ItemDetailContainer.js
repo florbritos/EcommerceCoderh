@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { arrayServicios } from "../data/arrayServicios";
 import ItemDetail from "./ItemDetail";
 
-const ItemDetailContainer = (servicio) => {
-debugger;
+const ItemDetailContainer = () => {
+
+  const {idItem} = useParams()
+
   const [servicioItem, setservicioItem] = useState ([])
 
   useEffect(() => {
       console.log('Se esta creando el componente ItemDetailContainer');
+      getItem(idItem);
+  }, {})
 
-      var rand = Math.floor(Math.random()*arrayServicios.length);
-      var rValue = arrayServicios[rand];
-      console.log('este es el serviocio seleccionado', rValue);
-      getItem(rValue);
-  }, [])
-
-  const getItem = (servicio) => {
+  const getItem = (idItem) => {
 
     const promise = new Promise ((resolve, reject) => {
       setTimeout(() => {
-          if (servicio) {
+       
+         let servicio = arrayServicios.filter( s => s.id == idItem);
+         setservicioItem(servicio[0])
+
+          if(servicio){
               resolve(servicio)
-              
           } else {
               reject('No se pudo encontrar ese servicio')
           }
@@ -29,7 +31,6 @@ debugger;
     })
 
     promise.then ( resolve => {
-      setservicioItem(resolve)
       console.log('Esto es que resolvió la promise  y lo guardó', resolve);
     })
   .catch(reject => {
@@ -40,8 +41,7 @@ debugger;
   
 
   return (
-    <div>
-        <h2 className="mt-20 font-medium">Servicio seleccionado:</h2>
+    <div className="detalleitemdiv bg-cyan-100">
             <ItemDetail servicio= {servicioItem}/>
     </div>
   )

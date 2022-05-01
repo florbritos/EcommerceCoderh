@@ -2,16 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ItemDetailContainer from './components/ItemDetailContainer';
+import ItemCategoryContainer from './components/ItemCategoryContainer';
 
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <NavBar/>
-      <h1 className="text-3xl font-bold text-rose-200">Elle&Chic</h1>
-      <p>Centro de estética</p>
-      <ItemListContainer greeting="Sofía"/>
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer/>}/>
+        <Route path="/category/:idCategory" element={<ItemCategoryContainer/>}/>
+        <Route path="/item/:idItem" element={<ItemDetailContainer/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

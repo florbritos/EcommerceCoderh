@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const ItemCount = (props) => {
 
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1)
   
     const sumar = () => {
         if (count < props.stock) {
@@ -11,7 +11,7 @@ const ItemCount = (props) => {
     }
   
     const restar = () => {
-        if (count>1) {
+        if (count> 1) {
             setCount(count-1);
         }
         
@@ -20,14 +20,14 @@ const ItemCount = (props) => {
   
     return (
     <>
-        <div className="text-lg mt-10">Sesión de depilación láser</div>
-        <div className="btn-group w-fit mx-auto mt-10">
-            <button onClick={restar} className="btn"> - </button>
-            <span className="w-14 numcount font-bold">{count}</span>
-            <button onClick={sumar} className="btn"> + </button>
+        <div className="container flex flex-col md:flex-row md:items-end justify-center flex-columns items-center">
+            <div className="btn-group w-fit  my-3 md:my-0 mx-3">
+                <button onClick={restar} className="btn"> - </button>
+                <span className="w-14 numcount text-center font-bold">{count}</span>
+                <button onClick={sumar} className="btn"> + </button>
+            </div>
+            <button className=" my-3 md:my-0 mx-3 btn btn-ghost rounded-none text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit text-xs ">Agregar al carrito</button>
         </div>
-
-        <button className="btn btn-ghost rounded-none text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit m-auto mt-5 text-xs ">Agregar al carrito</button>
     </>
   )
 }
