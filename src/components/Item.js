@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Item = ({servicio}) => {
-
+    console.log('Este es el servicio que debe mostrar', servicio);
     return(  
      
         <div class="card lg:card-side bg-base-100 shadow-xl m-6">
