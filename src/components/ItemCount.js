@@ -26,9 +26,11 @@ const ItemCount = (props) => {
                 <span className="w-14 numcount text-center font-bold">{count}</span>
                 <button onClick={sumar} className="btn"> + </button>
             </div>
-            <button className=" my-3 md:my-0 mx-3 btn btn-ghost rounded-none text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit text-xs ">Agregar al carrito</button>
+            <button onClick={ () => props.onAdd()} className=" my-3 md:my-0 mx-3 btn btn-ghost rounded-none text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit text-xs ">Agregar al carrito</button>
         </div>
     </>
   )
 }
 export default ItemCount
+
+
