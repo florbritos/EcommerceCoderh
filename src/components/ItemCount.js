@@ -23,6 +23,8 @@ const ItemCount = ({onAdd, stock, id}) => {
     }
   
     const handleClick = (id, count) =>{
+
+        console.log('este es lo recibido en agregar al carrito', id, count)
         const findService = services.find((servicio) => servicio.id == id)
 
         if(!findService){

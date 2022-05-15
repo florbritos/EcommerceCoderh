@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getItems } from "../data/arrayServicios"
 import ItemList from "./ItemList"
+import {getFirestore, collection, getDocs, where, query} from "firebase/firestore";
 
 const ItemListContainer = () => {
 
@@ -10,15 +10,27 @@ const ItemListContainer = () => {
 
 
   useEffect(() => {
-		if (idCategory === undefined) {
-			getItems().then((resp) => setserviciosCat(resp))
-		} else {
-			getItems().then((resp) =>
-      setserviciosCat(resp.filter((service) => service.category === idCategory))
-			)
-		}
+
+    const db = getFirestore();
+
+    if (idCategory === undefined) {
+
+      getDocs(collection(db, "items")).then((resp) => {
+        setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      });
+      
+		 } else {
+
+        const q = query(collection(db, "items"), where("category", "==", idCategory));
+        getDocs(q).then((resp) => {
+             setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      });
+
+     }
+
 	}, [idCategory])
 
+  console.log('Esto es lo obtenido despues del firestore', serviciosCat)
   
 	return (
     <>

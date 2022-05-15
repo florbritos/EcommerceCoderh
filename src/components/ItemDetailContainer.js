@@ -1,26 +1,31 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getItems } from "../data/arrayServicios";
 import ItemDetail from "./ItemDetail";
+import {getFirestore, getDoc, doc} from "firebase/firestore";
 
 const ItemDetailContainer = () => {
 
   const {idItem} = useParams()
-  const [servicioItem, setservicioItem] = useState ({})
-
+  const [servicioItem, setservicioItem] = useState ([])
+  
   useEffect(() => {
-    if (idItem== undefined){
-      getItems().then((resolve) => setservicioItem(resolve))
-    } else {
-      getItems().then((resolve) => setservicioItem(resolve[idItem]))
-    }
+
+    console.log('se monta el useeffect')
+     const db = getFirestore();
+
+     const busqueda = doc(db, "items", `${idItem}`);
+     getDoc(busqueda).then((snapshot) => {
+      setservicioItem({id: snapshot.id, ...snapshot.data()})
+     })
+
       
   }, [idItem])
 
-  
+
   return (
     <div className="detalleitemdiv bg-cyan-100">
+            
             <ItemDetail servicio= {servicioItem}/>
     </div>
   )

@@ -12,6 +12,7 @@ const CartContextProvider = ({children}) => {
 
     const addToCart = (servicio, cantidad)  => {
 
+        console.log('Este es el servicio recibido en addtocart', servicio, cantidad)
         const newCart = [...cart]
         const servicioIsInCart = isInCart(servicio.id)
         if (servicioIsInCart){

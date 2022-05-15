@@ -7,6 +7,8 @@ const ItemDetail = ({servicio}) => {
 
   const {id, title, description, price, pictureUrl, stock} = servicio
 
+  console.log('Este es el servicio llegado', servicio)
+
   const [eliminar, setEliminar] = useState(false)
 
   
@@ -32,4 +34,5 @@ const ItemDetail = ({servicio}) => {
     </>
   )
 }
+
 export default ItemDetail

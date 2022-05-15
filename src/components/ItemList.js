@@ -2,8 +2,6 @@ import Item from "./Item";
 
 const ItemList = ({serviciosCat}) => {
 
-    console.log('Esto es lo que recibí en el Itemlist', serviciosCat)
-
   return (
     <div className="listaservicios">
         <h2 className="mt-20 pt-10 pb-10 font-medium uppercase text-center">Nuestros servicios</h2>
