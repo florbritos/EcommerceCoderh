@@ -20,7 +20,7 @@ const ItemDetail = ({servicio}) => {
     <>
     <div class="border">
       <div className="card detalleitem lg:card-side bg-base-100 shadow-xl mx-auto">
-          <figure className=""><img className="" src={`/../${pictureUrl}`} alt={title}/></figure>
+          <figure className=""><img className="" src={pictureUrl} alt={title}/></figure>
           <div className="card-body">
               <h1 className="card-title">{title}</h1>
               <p className="text-xs">{description}</p>

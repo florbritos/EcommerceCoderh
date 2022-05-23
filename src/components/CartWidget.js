@@ -12,7 +12,7 @@ const CartWidget = () => {
         
         totalCantidad += cart[i].quantity;
         totalPrecio += cart[i].price*cart[i].quantity;
-        console.log(totalCantidad,totalPrecio)
+        //console.log(totalCantidad,totalPrecio)
 
     }
 

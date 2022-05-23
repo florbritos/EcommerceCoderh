@@ -2,35 +2,44 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
 import {getFirestore, collection, getDocs, where, query} from "firebase/firestore";
+import { useAppContext } from "./context/AppContext";
 
 const ItemListContainer = () => {
 
   const {idCategory} = useParams()
+  const { services } = useAppContext()
   const [serviciosCat, setserviciosCat] = useState ([])
 
+  console.log('estos son los services en el itemlistcontainer', services)
 
   useEffect(() => {
 
-    const db = getFirestore();
-
     if (idCategory === undefined) {
+			setserviciosCat(services)
+		} else {
+      setserviciosCat(services.filter((service) => service.category === idCategory))
+		}
 
-      getDocs(collection(db, "items")).then((resp) => {
-        setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-      });
+    // const db = getFirestore();
+
+    // if (idCategory === undefined) {
+
+    //   getDocs(collection(db, "items")).then((resp) => {
+    //     setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    //   });
       
-		 } else {
+		//  } else {
 
-        const q = query(collection(db, "items"), where("category", "==", idCategory));
-        getDocs(q).then((resp) => {
-             setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-      });
+    //     const q = query(collection(db, "items"), where("category", "==", idCategory));
+    //     getDocs(q).then((resp) => {
+    //          setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    //   });
 
-     }
+    //  }
 
 	}, [idCategory])
 
-  console.log('Esto es lo obtenido despues del firestore', serviciosCat)
+  //console.log('Esto es lo obtenido despues del firestore', serviciosCat)
   
 	return (
     <>

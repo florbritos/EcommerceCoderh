@@ -19,8 +19,9 @@ const AppContextProvider = ({children}) => {
       });
       
     
-    })
+    }, [])
     
+    console.log('esto es lo obtenido de firebase', services)
 
   return <AppContext.Provider value = {{services}}>{children}</AppContext.Provider>
 

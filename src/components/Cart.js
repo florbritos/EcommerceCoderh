@@ -1,3 +1,4 @@
+import { addDoc, collection, doc, getFirestore, updateDoc } from "firebase/firestore"
 import { Link } from "react-router-dom"
 import { useCartContext } from "./context/CartContext"
 
@@ -5,7 +6,57 @@ const Cart = () => {
 
     const {cart} = useCartContext()
     const {deleteFromCart} = useCartContext()
-    //const { countCart } = useCartContext()
+
+    let totalCantidad=0;
+    let totalPrecio=0;
+
+    for (let i=0; i<cart.length; i++){
+        
+        totalCantidad += cart[i].quantity;
+        totalPrecio += cart[i].price*cart[i].quantity;
+        //console.log(totalCantidad,totalPrecio)
+
+    }
+    
+    const realizarCompra = async () => {
+     
+      const buyer = {
+        name: 'Nicolas Barragán',
+        phone: '+54911112222',
+        email:'nicolasbarragan@hotmail.com',        
+      }
+
+      const serviciosFinales = cart.map( (c) =>( {"id": c.id, "title": c.title, "price": c.price} ) )
+      
+      const serviciosAComprar = {
+      buyer: buyer,
+      items: serviciosFinales,
+      total: totalPrecio,
+      }
+        
+      console.log('esta es la orden de compra', serviciosAComprar);
+
+      const db = getFirestore();
+      const orderCollection = collection(db, 'orders');
+
+      const response = await addDoc(orderCollection,serviciosAComprar)
+      let idOrder = response.id;
+      alert(`¡Gracias por su compra! la orden generada es #${idOrder}`);
+      
+      
+      const actualizarStock = () => {
+
+        cart.forEach( (s) => {
+          let stockFinal = s.stock - s.quantity;
+          const stockServicios = doc(db, 'items', s.id)
+          updateDoc(stockServicios,{stock: stockFinal});
+        });
+    
+      }   
+      actualizarStock();
+    }
+
+  
 
   return (
   <>
@@ -29,6 +80,7 @@ const Cart = () => {
         )
       ) : ( <div><p>No hay servicios en tu carrito</p><Link to={'/'} className="btn">Ver más servicios</Link></div> )
     }
+    { cart.length !==0 ? (<button className="btn" onClick= {realizarCompra }>Realizar compra</button>):("")}
   </>
   )
 }
