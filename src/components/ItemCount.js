@@ -2,15 +2,18 @@ import { useState } from "react";
 import { useAppContext } from "./context/AppContext";
 import { useCartContext } from "./context/CartContext";
 
-const ItemCount = ({onAdd, stock, id}) => {
+const ItemCount = ({onAdd, servicio}) => {
 
     const [count, setCount] = useState(1)
     
     const {addToCart} = useCartContext()
+    const {cart} = useCartContext()
     const {services} = useAppContext()
 
+    //console.log('este es el stock recibido en ItemCount', servicio.stock)
+
     const sumar = () => {
-        if (count < stock) {
+        if (count < servicio.stock) {
             setCount(count+1);
         }
     }
@@ -22,19 +25,15 @@ const ItemCount = ({onAdd, stock, id}) => {
         
     }
   
-    const handleClick = (id, count) =>{
+    const handleClick = (servicio, count) =>{
 
-        console.log('este es lo recibido en agregar al carrito', id, count)
-        const findService = services.find((servicio) => servicio.id == id)
+        //console.log('este es lo recibido en agregar al carrito', servicio, count)
 
-        if(!findService){
-            alert('Error en la base de datos')
-            return
-        }
-
-        addToCart(findService, count)
+        addToCart(servicio, count)
         onAdd(count)
     }
+
+    //console.log('este es el cart en ItemCount', cart)
 
     return (
     <>
@@ -44,7 +43,7 @@ const ItemCount = ({onAdd, stock, id}) => {
                 <span className="w-14 numcount text-center font-bold">{count}</span>
                 <button onClick={sumar} className="btn"> + </button>
             </div>
-            <button onClick={ () => handleClick(id,count)} className=" my-3 md:my-0 mx-3 btn btn-ghost rounded-none text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit text-xs ">Agregar al carrito</button>
+            <button onClick={ () => handleClick(servicio,count)} className=" my-3 md:my-0 mx-3 btn btn-ghost rounded-none text-xl bg-rose-200 text-white hover:bg-white hover:text-black w-fit text-xs ">Agregar al carrito</button>
         </div>
     </>
   )

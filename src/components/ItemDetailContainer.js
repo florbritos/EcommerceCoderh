@@ -12,28 +12,35 @@ const ItemDetailContainer = () => {
   const [servicioItem, setservicioItem] = useState ([])
   //const [servicioItem, setservicioItem] = useState ({})
   
-  console.log('estos son los services en el itemdetail', services)
+  //console.log('estos son los services en el itemdetail', services)
 
   useEffect(() => {
 
-    console.log('se monta el useEffect')
+    //console.log('se monta el useEffect')
+    //console.log('este es el IDItem', idItem)
 
-    if (idItem == undefined){
-      setservicioItem(services)
-    } else {
-      setservicioItem(services[idItem])
-    }
+      // if (idItem == undefined){
+      //   setservicioItem(services)
+      // } else {
+      //   setservicioItem(services[idItem])
+      //   const db = getFirestore();
+
+      //   const busqueda = doc(db, "items", `${idItem}`);
+      //   getDoc(busqueda).then((snapshot) => {
+      //    setservicioItem({id: snapshot.id, ...snapshot.data()})
+      //   })
+      // }
 
 
-    //  const db = getFirestore();
+        const db = getFirestore();
 
-    //  const busqueda = doc(db, "items", `${idItem}`);
-    //  getDoc(busqueda).then((snapshot) => {
-    //   setservicioItem({id: snapshot.id, ...snapshot.data()})
-    //  })
+        const busqueda = doc(db, "items", `${idItem}`);
+        getDoc(busqueda).then((snapshot) => {
+         setservicioItem({id: snapshot.id, ...snapshot.data()})
+        })
 
       
-  }, [idItem])
+  }, [idItem, services])
 
 
   return (

@@ -7,7 +7,7 @@ const ItemDetail = ({servicio}) => {
 
   const {id, title, description, price, pictureUrl, stock} = servicio
 
-  console.log('Este es el servicio llegado', servicio)
+  //console.log('Este es el servicio llegado a itemDetail.js', servicio)
 
   const [eliminar, setEliminar] = useState(false)
 
@@ -26,7 +26,7 @@ const ItemDetail = ({servicio}) => {
               <p className="text-xs">{description}</p>
               <p className="text-xl">$ {price}</p>
               <div className="card-actions justify-center">
-                { eliminar ? (<Link to={'/cart'} className="btn">Terminar Compra</Link>) : (<ItemCount onAdd={onAdd} stock={stock} id={id}/>)}
+                { eliminar ? (<Link to={'/cart'} className="btn">Terminar Compra</Link>) : (<ItemCount onAdd={onAdd} servicio={servicio}/>)}
               </div>
           </div>
       </div>

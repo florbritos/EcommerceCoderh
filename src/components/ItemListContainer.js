@@ -10,36 +10,36 @@ const ItemListContainer = () => {
   const { services } = useAppContext()
   const [serviciosCat, setserviciosCat] = useState ([])
 
-  console.log('estos son los services en el itemlistcontainer', services)
+  //console.log('estos son los services en el itemlistcontainer', services)
 
   useEffect(() => {
 
-    if (idCategory === undefined) {
-			setserviciosCat(services)
-		} else {
-      setserviciosCat(services.filter((service) => service.category === idCategory))
-		}
+      if (idCategory === undefined) {
+		  	setserviciosCat(services)
+		  } else {
+        setserviciosCat(services.filter((service) => service.category === idCategory))
+		  }
 
-    // const db = getFirestore();
+      // const db = getFirestore();
 
-    // if (idCategory === undefined) {
+      // if (idCategory === undefined) {
 
-    //   getDocs(collection(db, "items")).then((resp) => {
-    //     setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    //   });
+      //   getDocs(collection(db, "items")).then((resp) => {
+      //     setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      //   });
       
-		//  } else {
+		  //  } else {
 
-    //     const q = query(collection(db, "items"), where("category", "==", idCategory));
-    //     getDocs(q).then((resp) => {
-    //          setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    //   });
+      //     const q = query(collection(db, "items"), where("category", "==", idCategory));
+      //     getDocs(q).then((resp) => {
+      //          setserviciosCat(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      //   });
 
-    //  }
+      //  }
 
-	}, [idCategory])
+	}, [idCategory, services])
 
-  //console.log('Esto es lo obtenido despues del firestore', serviciosCat)
+  //console.log('Esto es lo obtenido despues del firestore en ItemListContainer', serviciosCat)
   
 	return (
     <>

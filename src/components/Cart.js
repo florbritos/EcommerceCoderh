@@ -6,15 +6,18 @@ const Cart = () => {
 
     const {cart} = useCartContext()
     const {deleteFromCart} = useCartContext()
+    const {deleteCart} = useCartContext()
 
     let totalCantidad=0;
     let totalPrecio=0;
+
+    //console.log('este es el cart en cart.js', cart);
 
     for (let i=0; i<cart.length; i++){
         
         totalCantidad += cart[i].quantity;
         totalPrecio += cart[i].price*cart[i].quantity;
-        //console.log(totalCantidad,totalPrecio)
+        //console.log('este es el cart en cart.js', totalCantidad,totalPrecio)
 
     }
     
@@ -34,7 +37,7 @@ const Cart = () => {
       total: totalPrecio,
       }
         
-      console.log('esta es la orden de compra', serviciosAComprar);
+      //console.log('esta es la orden de compra', serviciosAComprar);
 
       const db = getFirestore();
       const orderCollection = collection(db, 'orders');
@@ -47,13 +50,21 @@ const Cart = () => {
       const actualizarStock = () => {
 
         cart.forEach( (s) => {
+          console.log('Este es el stock existente', s.stock);
+          console.log('Este es lo que resto', s.quantity);
+
           let stockFinal = s.stock - s.quantity;
+
+          
+          //console.log('Este es el stock final', stockFinal)
+
           const stockServicios = doc(db, 'items', s.id)
           updateDoc(stockServicios,{stock: stockFinal});
         });
     
       }   
       actualizarStock();
+      deleteCart();
     }
 
   

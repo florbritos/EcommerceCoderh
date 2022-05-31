@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Item = ({servicio}) => {
+
+    //console.log('este es el servicio en Item.js', servicio);
     
     return(  
      
