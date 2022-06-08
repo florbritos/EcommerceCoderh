@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAppContext } from "./context/AppContext";
 import { useCartContext } from "./context/CartContext";
 
 const ItemCount = ({onAdd, servicio}) => {
@@ -7,11 +6,7 @@ const ItemCount = ({onAdd, servicio}) => {
     const [count, setCount] = useState(1)
     
     const {addToCart} = useCartContext()
-    const {cart} = useCartContext()
-    const {services} = useAppContext()
-
-    //console.log('este es el stock recibido en ItemCount', servicio.stock)
-
+  
     const sumar = () => {
         if (count < servicio.stock) {
             setCount(count+1);
@@ -27,13 +22,11 @@ const ItemCount = ({onAdd, servicio}) => {
   
     const handleClick = (servicio, count) =>{
 
-        //console.log('este es lo recibido en agregar al carrito', servicio, count)
-
         addToCart(servicio, count)
         onAdd(count)
     }
 
-    //console.log('este es el cart en ItemCount', cart)
+    
 
     return (
     <>

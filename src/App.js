@@ -8,6 +8,7 @@ import AppContextProvider from './components/context/AppContext';
 import Cart from './components/Cart';
 
 function App() {
+
   return (
     <AppContextProvider>
       <CartContextProvider>

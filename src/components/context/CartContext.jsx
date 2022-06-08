@@ -12,7 +12,7 @@ const CartContextProvider = ({children}) => {
 
     const addToCart = (servicio, cantidad)  => {
 
-        console.log('Este es el servicio recibido en addtocart', servicio, cantidad)
+        
         const newCart = [...cart]
         const servicioIsInCart = isInCart(servicio.id)
         if (servicioIsInCart){
@@ -39,11 +39,25 @@ const CartContextProvider = ({children}) => {
 
     const deleteCart = () => setCart([])
 
+    const calculoCart = () => {
+
+        let totalCantidad=0;
+        let totalPrecio=0;
+    
+        for (let i=0; i<cart.length; i++){
+            
+            totalCantidad += cart[i].quantity;
+            totalPrecio += cart[i].price*cart[i].quantity;
+        }
+
+        return ([totalCantidad,totalPrecio])
+    }
+
     console.log(cart);
 
   return (
     <CartContext.Provider value={{
-        cart, addToCart,deleteFromCart,deleteCart,setCart,
+        cart, addToCart,deleteFromCart,deleteCart,setCart,calculoCart,
     }}>{children}</CartContext.Provider>
   )
 }

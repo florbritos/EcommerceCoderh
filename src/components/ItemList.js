@@ -2,7 +2,6 @@ import Item from "./Item";
 
 const ItemList = ({serviciosCat}) => {
 
-    //console.log('Ests son los servicios de ItemList', serviciosCat);
 
   return (
     <div className="listaservicios">

@@ -1,6 +1,7 @@
 import React from "react"
 import { createContext, useContext, useEffect, useState } from "react"
-import {getFirestore, collection, getDocs, where, query} from "firebase/firestore";
+import {getFirestore, collection, getDocs} from "firebase/firestore";
+
 
 const AppContext = createContext()
 export const useAppContext = () => useContext(AppContext)
@@ -20,8 +21,8 @@ const AppContextProvider = ({children}) => {
       
     
     }, [])
-    
-    console.log('esto es lo obtenido de firebase', services)
+
+  
 
   return <AppContext.Provider value = {{services}}>{children}</AppContext.Provider>
 
